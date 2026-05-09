@@ -10,7 +10,6 @@ let fishy: Sprite
 let gameTimer: number
 let coinsCollected: number = 0
 let gameActive: boolean = true
-let coinSpawner: number
 
 // Create the game background (underwater tank)
 scene.setBackgroundColor(9)  // Blue background for water
@@ -44,7 +43,7 @@ gameTimer = 60
 showScore()
 
 // Setup coin spawner
-coinSpawner = game.onUpdateInterval(500, function() {
+game.onUpdateInterval(500, function() {
     if (gameActive) {
         spawnCoin()
     }
@@ -91,7 +90,7 @@ function spawnCoin() {
     coin.setVelocity(0, 50)  // Coins fall down
     
     // Destroy coin after 2 seconds if not collected
-    control.inBackground(function() {
+    control.runInParallel(function() {
         pause(2000)
         if (coin != null) {
             coin.destroy()
