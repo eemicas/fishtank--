@@ -42,7 +42,7 @@ gameTimer = 60
 // Display initial score
 showScore()
 
-// Setup coin spawner
+// Setup coin spawner - removed assignment since game.onUpdateInterval returns void
 game.onUpdateInterval(500, function() {
     if (gameActive) {
         spawnCoin()
